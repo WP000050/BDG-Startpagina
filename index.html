@@ -171,6 +171,13 @@
     .apps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
     .tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
     .tool-title { margin: 2px 0 7px; color: var(--ink); font-size: 12px; letter-spacing: .05em; text-transform: uppercase; }
+
+    .kleuter-title { margin-top: 16px; }
+    .image-tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .image-tool { position: relative; min-width: 0; height: 104px; padding: 5px; overflow: hidden; border: 2px solid #d8e9de; border-radius: 13px; background: #fff; cursor: pointer; box-shadow: 0 4px 11px rgba(38, 52, 58, .10); transition: transform .15s, border-color .15s, box-shadow .15s; }
+    .image-tool:hover { border-color: var(--green); transform: translateY(-2px); box-shadow: 0 7px 15px rgba(38, 52, 58, .14); }
+    .image-tool img { display: block; width: 100%; height: 100%; object-fit: contain; }
+    .image-tool .image-fallback { position: absolute; inset: 5px; display: none; place-items: center; border-radius: 9px; color: #fff; background: linear-gradient(135deg, var(--green), var(--blue2)); font-size: 18px; font-weight: 800; }
     .lagere-title { margin-top: 13px; }
     .app, .tool {
       position: relative;
@@ -231,6 +238,8 @@
       .scan { width: 100%; }
       .apps { grid-template-columns: 1fr; }
       .tools { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .image-tools { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+      .image-tool { height: 82px; }
       .outlook { grid-column: auto; }
     }
     @media(prefers-reduced-motion:reduce){
@@ -306,16 +315,7 @@
             </div>
           </div>
           <div class="notice">⚠️ De Toolboxlinks worden beheerd via het <strong>config.js</strong> bestand.</div>
-          <h3 class="tool-title">Kleuterschool</h3>
-          <div class="tools kleuters">
-            <button class="tool k1" data-toolbox="k1">K1</button>
-            <button class="tool k2" data-toolbox="k2">K2</button>
-            <button class="tool k3" data-toolbox="k3">K3</button>
-            <button class="tool k4" data-toolbox="k4">K4</button>
-            <button class="tool k5" data-toolbox="k5">K5</button>
-            <button class="tool k6" data-toolbox="k6">K6</button>
-          </div>
-          <h3 class="tool-title lagere-title">Lagere school</h3>
+          <h3 class="tool-title">Lagere school</h3>
           <div class="tools lagere">
             <button class="tool l1" data-toolbox="l1">1e</button>
             <button class="tool l2" data-toolbox="l2">2e</button>
@@ -323,6 +323,15 @@
             <button class="tool l4" data-toolbox="l4">4e</button>
             <button class="tool l5" data-toolbox="l5">5e</button>
             <button class="tool l6" data-toolbox="l6">6e</button>
+          </div>
+          <h3 class="tool-title kleuter-title">Kleuterschool</h3>
+          <div class="image-tools" aria-label="Toolboxen kleuterklassen">
+            <button class="image-tool" type="button" data-image-tool="k1" aria-label="Kleuterklas 1"><img src="K1.png" alt="Kleuterklas 1" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="image-fallback">K1</span></button>
+            <button class="image-tool" type="button" data-image-tool="k2" aria-label="Kleuterklas 2"><img src="K2.png" alt="Kleuterklas 2" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="image-fallback">K2</span></button>
+            <button class="image-tool" type="button" data-image-tool="k3" aria-label="Kleuterklas 3"><img src="K3.png" alt="Kleuterklas 3" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="image-fallback">K3</span></button>
+            <button class="image-tool" type="button" data-image-tool="k4" aria-label="Kleuterklas 4"><img src="K4.png" alt="Kleuterklas 4" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="image-fallback">K4</span></button>
+            <button class="image-tool" type="button" data-image-tool="k5" aria-label="Kleuterklas 5"><img src="K5.png" alt="Kleuterklas 5" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="image-fallback">K5</span></button>
+            <button class="image-tool" type="button" data-image-tool="k6" aria-label="Kleuterklas 6"><img src="K6.png" alt="Kleuterklas 6" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="image-fallback">K6</span></button>
           </div>
         </section>
       </div>
@@ -345,6 +354,7 @@
       document.getElementById("stopButton").addEventListener("click", stopScanner);
       document.querySelectorAll("[data-app]").forEach(b => b.addEventListener("click", () => openApp(b.dataset.app)));
       document.querySelectorAll("[data-toolbox]").forEach(b => b.addEventListener("click", () => openToolbox(b.dataset.toolbox)));
+      document.querySelectorAll("[data-image-tool]").forEach(b => b.addEventListener("click", () => openImageTool(b.dataset.imageTool)));
     });
 
     async function startScan() {
@@ -469,6 +479,16 @@
       const u = links[k];
       if (!u) {
         alert("⚠️ De link voor Toolbox " + k + " is nog niet ingesteld.");
+        return;
+      }
+      location.href = u;
+    }
+
+    function openImageTool(k) {
+      const links = (typeof IMAGE_TOOL_LINKS !== 'undefined') ? IMAGE_TOOL_LINKS : {};
+      const u = String(links[k] || "").trim();
+      if (!u) {
+        alert("⚠️ De link voor kleuterklas " + k.toUpperCase() + " is nog niet ingesteld.");
         return;
       }
       location.href = u;
