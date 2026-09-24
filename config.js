@@ -1,21 +1,20 @@
 /* ==========================================================================
    CONFIGURATIE BASISSCHOOL DE GROEITUIN - SCHRIEK & GROOTLO
-   Pas hier het leerlingendomein en de links naar de startpagina's aan.
    ========================================================================== */
 
 const LEERLING_DOMEIN = "leerling.degroeituin.be";
 
 // Lagere school
 const TOOLBOX_LINKS = {
-  l1: "",
-  l2: "",
-  l3: "",
-  l4: "",
-  l5: "",
-  l6: ""
+  l1: "https://zebra-6gl136.my.canva.site/ke-bdg-toolbox-1elj",
+  l2: "https://zebra-6gl136.my.canva.site/ke-bdg-toolbox-2elj",
+  l3: "https://zebra-6gl136.my.canva.site/ke-bdg-toolbox-3elj",
+  l4: "https://zebra-6gl136.my.canva.site/ke-bdg-toolbox-4elj",
+  l5: "https://zebra-6gl136.my.canva.site/ke-bdg-toolbox-5elj",
+  l6: "https://zebra-6gl136.my.canva.site/ke-bdg-toolbox-6elj"
 };
 
-// Kleuterklassen. De afbeeldingen heten K1.png tot en met K6.png.
+// Kleuterklassen
 const IMAGE_TOOL_LINKS = {
   k1: "",
   k2: "",
