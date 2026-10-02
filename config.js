@@ -6,7 +6,7 @@ const LEERLING_DOMEIN = "leerling.degroeituin.be";
 
 // Lagere school
 const TOOLBOX_LINKS = {
-  le: "https://zebra-6gl136.my.canva.site/ke-bdg-toolbox-1elj",
+  l1: "https://zebra-6gl136.my.canva.site/ke-bdg-toolbox-1elj",
   l2: "https://zebra-6gl136.my.canva.site/ke-bdg-toolbox-2elj",
   l3: "https://zebra-6gl136.my.canva.site/ke-bdg-toolbox-3elj",
   l4: "https://zebra-6gl136.my.canva.site/ke-bdg-toolbox-4elj",
