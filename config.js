@@ -16,10 +16,10 @@ const TOOLBOX_LINKS = {
 
 // Kleuterklassen
 const IMAGE_TOOL_LINKS = {
-  k1: "",
-  k2: "",
-  k3: "",
-  k4: "",
-  k5: "",
-  k6: ""
+  k1: "https://zebra-6gl136.my.canva.site/ke-bdg-toolbox-anna-s",
+  k2: "https://zebra-6gl136.my.canva.site/ke-bdg-toolbox-anna-jules-g",
+  k3: "https://zebra-6gl136.my.canva.site/ke-bdg-toolbox-jules-s",
+  k4: "https://zebra-6gl136.my.canva.site/ke-bdg-toolbox-loeloe-s",
+  k5: "https://zebra-6gl136.my.canva.site/ke-bdg-toolbox-loeloe-pompom-g",
+  k6: "https://zebra-6gl136.my.canva.site/ke-bdg-toolbox-pompom-s"
 };
